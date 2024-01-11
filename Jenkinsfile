@@ -58,22 +58,7 @@ pipeline {
                 }
             }
         }
-        stage('docker build build_jeepay_payment  ') {
-            when { expression { return params.build_jeepay_payment } }
-            steps {
-                container('docker') {
-                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9216 PLATFORM=payment --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${PAYMENT_APP_NAME}:v${params.app_version} --push  "
-                }
-            }
-        }
-        stage('docker build build_jeepay_manager  ') {
-            when { expression { return params.build_jeepay_manager } }
-            steps {
-                container('docker') {
-                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9217 PLATFORM=manager --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${MANAGER_APP_NAME}:v${params.app_version} --push  "
-                }
-            }
-        }
+
         stage('docker build build_jeepay_activemq  ') {
             when { expression { return params.build_jeepay_activemq } }
             steps {
@@ -82,11 +67,27 @@ pipeline {
                 }
             }
         }
+        stage('docker build build_jeepay_payment  ') {
+            when { expression { return params.build_jeepay_payment } }
+            steps {
+                container('docker') {
+                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9216 --build-arg PLATFORM=payment --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${PAYMENT_APP_NAME}:v${params.app_version} --push  "
+                }
+            }
+        }
+        stage('docker build build_jeepay_manager  ') {
+            when { expression { return params.build_jeepay_manager } }
+            steps {
+                container('docker') {
+                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9217 --build-arg PLATFORM=manager --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${MANAGER_APP_NAME}:v${params.app_version} --push  "
+                }
+            }
+        }
         stage('docker build build_jeepay_merchant  ') {
             when { expression { return params.build_jeepay_merchant } }
             steps {
                 container('docker') {
-                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9218 PLATFORM=merchant --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${MERCHANT_APP_NAME}:v${params.app_version} --push  "
+                    sh "docker buildx build  . -f JenkinsDockerfile --build-arg PORT=9218 --build-arg PLATFORM=merchant --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${MERCHANT_APP_NAME}:v${params.app_version} --push  "
                 }
             }
         }
