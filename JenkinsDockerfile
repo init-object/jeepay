@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-slim as builder
 WORKDIR /app
-ARG JAR_FILE
+ARG PLATFORM=$PLATFORM
 ADD jeepay-${PLATFORM}/target/jeepay-${PLATFORM}.jar boot.jar
 RUN java -Djarmode=layertools -jar boot.jar extract
 
@@ -19,3 +19,4 @@ COPY --from=builder app/snapshot-dependencies ./
 COPY --from=builder app/application ./
 
 ENTRYPOINT ["sh","-c","java $JVM_OPTS $JAVA_OPTS org.springframework.boot.loader.JarLauncher"]
+EXPOSE $PORT
