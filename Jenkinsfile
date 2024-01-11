@@ -63,7 +63,7 @@ pipeline {
             when { expression { return params.build_jeepay_activemq } }
             steps {
                 container('docker') {
-                    sh "docker buildx build  ./docker/activemq/ -f Dockerfile --build-arg  PLATFORM=activemq --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${ACTIVEMQ_APP_NAME}:v${params.app_version} --push  "
+                    sh "docker buildx build  ./docker/activemq/ -f ./docker/activemq/Dockerfile --build-arg  PLATFORM=activemq --platform linux/amd64,linux/arm64 --tag ${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${ACTIVEMQ_APP_NAME}:v${params.app_version} --push  "
                 }
             }
         }
