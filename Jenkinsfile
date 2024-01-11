@@ -38,7 +38,7 @@ pipeline {
         stage('maven build jeepay') {
             steps {
                 container('maven') {
-                    sh "mvn clean package -Dmaven.test.skip=true -Ptest"
+                    sh "mvn clean package -Dmaven.test.skip=true "
                 }
             }
         }
