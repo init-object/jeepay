@@ -84,6 +84,7 @@ spring:
 rocketmq:
   name-server: ${ROCKETMQ_NAME_SERVER:rocketmq-nameserver.jeecg:9876}
   producer:
+    group: JEEPAY-GROUP
 
   ## 阿里云rocketmq配置 ( 注意：aliyun-rocketmq配置项请放置到根目录， 不是spring的二级配置！需要阿里云开通rocketMQ产品，创建Group和Topic  )
   #aliyun-rocketmq:
