@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: ${ACTIVE_PROFILE:env}
+    active: ${ACTIVE_PROFILE:rocketmq}
 
 # knife4j APIDOC文档
 knife4j:
