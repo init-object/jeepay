@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-slim as builder
+FROM registry.cn-hangzhou.aliyuncs.com/wang-kun/openjdk:8-jdk-slim-font as builder
 WORKDIR /app
 ARG PLATFORM=$PLATFORM
 ADD jeepay-${PLATFORM}/target/jeepay-${PLATFORM}.jar boot.jar
