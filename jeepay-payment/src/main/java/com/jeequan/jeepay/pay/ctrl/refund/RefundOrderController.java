@@ -202,7 +202,7 @@ public class RefundOrderController extends ApiController {
         refundOrder.setChannelExtra(rq.getChannelExtra()); //特定渠道发起时额外参数
         refundOrder.setNotifyUrl(rq.getNotifyUrl()); //通知地址
         refundOrder.setExtParam(rq.getExtParam()); //扩展参数
-        refundOrder.setExpiredTime(DateUtil.offsetHour(nowTime, 2)); //订单超时关闭时间 默认两个小时
+        refundOrder.setExpiredTime(DateUtil.offsetHour(nowTime, 8)); //订单超时关闭时间 默认两个小时
         refundOrder.setSuccessTime(null); //订单退款成功时间
         refundOrder.setCreatedAt(nowTime); //创建时间
 
